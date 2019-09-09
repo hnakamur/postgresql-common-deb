@@ -1,16 +1,7 @@
 #!/usr/bin/make -f
 
-VERSION := $(shell dpkg-parsechangelog | awk '/^Version:/ { print $$2 }')
-ifneq ($(findstring bpo,$(VERSION)),)
-	FLAVOR := debian-backports
-else ifneq ($(findstring pgdg,$(VERSION)),)
-	FLAVOR := pgdg
-	# for apt.postgresql.org builds, pull in the repository key package
-	PGDG_DEPENDS := pgdg-keyring
-else
-	FLAVOR := default
-endif
-SUPPORTED_VERSIONS := $(shell PG_SUPPORTED_VERSIONS="$(FLAVOR)" debian/supported-versions)
+FLAVOR := default
+SUPPORTED_VERSIONS := 11
 DEFAULT_VER := $(lastword $(SUPPORTED_VERSIONS))
 LIBREADLINE := $(shell dpkg-query -W --showformat '$${Status} $${Package}\n' 'libreadline[0-9]'| sed -n '/ installed / {s/^.* //; p}'|sort -ru | head -n1)
 
