@@ -1,3 +1,9 @@
+postgresql-common (204.pgdg18.04+1ppa2) bionic; urgency=medium
+
+  * Stop depending pgdg-keyring.
+
+ -- Hiroaki Nakamura <hnakamur@gmail.com>  Mon, 09 Sep 2019 16:56:03 +0900
+
 postgresql-common (204.pgdg18.04+1ppa1) bionic; urgency=medium
 
   * Rebuild for bionic on PPA.
